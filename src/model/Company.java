@@ -52,4 +52,15 @@ public class Company {
     public void setWebsite(String website) {
         this.website = website;
     }
+
+    public List<Codec> getCodecs() {
+        return codecs;
+    }
+
+    public void addCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            this.codecs.add(codec);
+            codec.setCompany(this);
+        }
+    }
 }

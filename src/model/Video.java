@@ -45,6 +45,12 @@ public class Video {
     }
 
     public void setFormat(Format format) {
+        if(this.format != null){
+            this.format.getVideos().remove(this);
+        }
         this.format = format;
+        if(format != null && !this.format.getVideos().contains(this)){
+            this.format.getVideos().add(this);
+        }
     }
 }

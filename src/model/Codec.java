@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Codec")
@@ -21,12 +23,16 @@ public class Codec {
     @ManyToOne
     private Company company;
 
+    @ManyToMany(mappedBy = "codecs")
+    private List<Player> players;
+
     public Codec() {
     }
 
     public Codec(String name, String dllFileName){
         this.name = name;
         this.dllFileName = dllFileName;
+        this.players = new ArrayList<>();
     }
 
     public int getId() {
@@ -58,7 +64,13 @@ public class Codec {
     }
 
     public void setFormat(Format format) {
+        if(this.format != null){
+            this.format.getCodecs().remove(this);
+        }
         this.format = format;
+        if(format != null && !this.format.getCodecs().contains(this)){
+            this.format.getCodecs().add(this);
+        }
     }
 
     public Company getCompany() {
@@ -66,6 +78,23 @@ public class Codec {
     }
 
     public void setCompany(Company company) {
+        if(this.company != null){
+            this.company.getCodecs().remove(this);
+        }
         this.company = company;
+        if(company != null && !this.company.getCodecs().contains(this)){
+            this.company.getCodecs().add(this);
+        }
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    /*public void addPlayer(Player player){
+        if(!this.players.contains(player)){
+            player.getCodecs().add(this);
+            this.players.add(player);
+        }
+    }*/
 }

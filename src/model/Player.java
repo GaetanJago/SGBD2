@@ -19,15 +19,6 @@ public class Player {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "Compatibilite",
-            joinColumns = { @JoinColumn(name = "player_id")},
-            inverseJoinColumns = {@JoinColumn(name = "format_id")}
-    )
-    private List<Format> formats;
-
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
             name = "Accede",
             joinColumns = { @JoinColumn(name = "player_id")},
             inverseJoinColumns = {@JoinColumn(name = "codec_id")}
@@ -39,7 +30,6 @@ public class Player {
     public Player(String name, int koRequired) {
         this.name = name;
         this.koRequired = koRequired;
-        this.formats = new ArrayList<>();
         this.codecs = new ArrayList<>();
     }
 
@@ -65,5 +55,16 @@ public class Player {
 
     public void setKoRequired(int koRequired) {
         this.koRequired = koRequired;
+    }
+
+    public List<Codec> getCodecs() {
+        return codecs;
+    }
+
+    public void addCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            codec.getPlayers().add(this);
+            this.codecs.add(codec);
+        }
     }
 }

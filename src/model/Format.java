@@ -20,8 +20,6 @@ public class Format {
     @OneToMany(mappedBy = "format", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Codec> codecs;
 
-    @ManyToMany(mappedBy = "formats")
-    private List<Player> players;
 
     @OneToMany(mappedBy = "format", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Video> videos;
@@ -32,7 +30,6 @@ public class Format {
         this.extension = extension;
         this.name = name;
         this.codecs = new ArrayList<>();
-        this.players = new ArrayList<>();
         this.videos = new ArrayList<>();
     }
 
@@ -59,4 +56,28 @@ public class Format {
     public void setExtension(String extension) {
         this.extension = extension;
     }
+
+    public List<Codec> getCodecs() {
+        return codecs;
+    }
+
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void addCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            this.codecs.add(codec);
+            codec.setFormat(this);
+        }
+    }
+
+    public void addVideo(Video video){
+        if(!this.videos.contains(video)){
+            this.videos.add(video);
+            video.setFormat(this);
+        }
+    }
+
 }
