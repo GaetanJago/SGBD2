@@ -34,4 +34,8 @@ public class FormatDAO extends BaseDAO<Format> {
     public void create(Format format){
         super.create(format);
     }
+
+    public void delete(Format format){
+        super.delete(format);
+    }
 }

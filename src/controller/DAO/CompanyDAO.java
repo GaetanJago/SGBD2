@@ -32,4 +32,8 @@ public class CompanyDAO extends BaseDAO<Company> {
     public void create(Company company){
         super.create(company);
     }
+
+    public void delete(Company company){
+        super.delete(company);
+    }
 }

@@ -17,7 +17,7 @@ public class Player {
 
     private int koRequired;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "Accede",
             joinColumns = { @JoinColumn(name = "player_id")},
@@ -65,6 +65,13 @@ public class Player {
         if(!this.codecs.contains(codec)){
             codec.getPlayers().add(this);
             this.codecs.add(codec);
+        }
+    }
+
+    public void removeCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            codec.getPlayers().remove(this);
+            this.codecs.remove(codec);
         }
     }
 }

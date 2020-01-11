@@ -33,4 +33,11 @@ public class VideoDAO extends BaseDAO<Video> {
     public void create(Video video){
         super.create(video);
     }
+
+    public void delete(Video video){
+        if(video.getFormat() != null){
+            video.getFormat().removeVideo(video);
+        }
+        super.delete(video);
+    }
 }

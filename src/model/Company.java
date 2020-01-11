@@ -63,4 +63,11 @@ public class Company {
             codec.setCompany(this);
         }
     }
+
+    public void removeCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            this.codecs.remove(codec);
+            codec.setCompany(null);
+        }
+    }
 }

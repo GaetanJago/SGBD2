@@ -1,5 +1,6 @@
 package controller.DAO;
 
+import model.Codec;
 import model.Company;
 import model.Player;
 
@@ -32,5 +33,12 @@ public class PlayerDAO extends BaseDAO<Player> {
 
     public void create(Player player){
         super.create(player);
+    }
+
+    public void delete(Player player){
+        for (Codec codec: player.getCodecs()) {
+            codec.getPlayers().remove(player);
+        }
+        super.delete(player);
     }
 }

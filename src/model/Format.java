@@ -73,10 +73,24 @@ public class Format {
         }
     }
 
+    public void removeCodec(Codec codec){
+        if(!this.codecs.contains(codec)){
+            this.codecs.remove(codec);
+            codec.setFormat(null);
+        }
+    }
+
     public void addVideo(Video video){
         if(!this.videos.contains(video)){
             this.videos.add(video);
             video.setFormat(this);
+        }
+    }
+
+    public void removeVideo(Video video){
+        if(!this.videos.contains(video)){
+            this.videos.remove(video);
+            video.setFormat(null);
         }
     }
 

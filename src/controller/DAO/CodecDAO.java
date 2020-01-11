@@ -32,10 +32,6 @@ public class CodecDAO extends BaseDAO<Codec> {
     }
 
     public void create(Codec codec){
-        /*for (Player player: codec.getPlayers()
-             ) {
-            player.addCodec(codec);
-        }*/
 
         super.create(codec);
         /*if(codec.getFormat() != null){
@@ -44,5 +40,18 @@ public class CodecDAO extends BaseDAO<Codec> {
         if(codec.getCompany() != null){
             codec.getCompany().addCodec(codec);
         }*/
+    }
+
+    public void delete(Codec codec){
+        if(codec.getFormat() != null){
+            codec.getFormat().removeCodec(codec);
+        }
+        if(codec.getCompany() != null){
+            codec.getCompany().removeCodec(codec);
+        }
+        for (Player player : codec.getPlayers()) {
+            player.getCodecs().remove(codec);
+        }
+        super.delete(codec);
     }
 }

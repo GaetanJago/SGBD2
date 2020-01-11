@@ -20,7 +20,7 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LienSGBD_Projet2"); //name of persistence unit
         EntityManager em = emf.createEntityManager();
 
-        /*CodecDAO codecDAO = new CodecDAO(em);
+        CodecDAO codecDAO = new CodecDAO(em);
         CompanyDAO companyDAO = new CompanyDAO(em);
         FormatDAO formatDAO = new FormatDAO(em);
         PlayerDAO playerDAO = new PlayerDAO(em);
@@ -46,13 +46,23 @@ public class Main {
         player.addCodec(codec2);
         codecDAO.create(codec2);
 
-        System.out.println(codec.getPlayers());
-        System.out.println(player.getCodecs());
+        //System.out.println(codec.getPlayers());
+        //System.out.println(player.getCodecs());
 
         format.addCodec(codec2);
         formatDAO.save();
 
-        System.out.println(company.getCodecs());*/
+        //System.out.println(format.getCodecs());
+        //System.out.println(format.getVideos());
+        System.out.println(player.getCodecs());
+        System.out.println(codec.getPlayers());
+        //formatDAO.delete(format);
+        codecDAO.delete(codec);
+
+        Video video = new Video("video", format);
+        videoDAO.create(video);
+
+        //System.out.println(format.getCodecs());
 
 
         em.close();
