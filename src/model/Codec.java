@@ -97,4 +97,9 @@ public class Codec {
             this.players.add(player);
         }
     }*/
+    
+    @Override
+    public String toString() {
+    	return getName();
+    }
 }

@@ -53,4 +53,9 @@ public class Video {
             this.format.getVideos().add(this);
         }
     }
+    
+    @Override
+    public String toString() {
+    	return getFileName();
+    }
 }

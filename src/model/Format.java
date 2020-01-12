@@ -93,5 +93,10 @@ public class Format {
             video.setFormat(null);
         }
     }
+    
+    @Override
+    public String toString() {
+    	return getName();
+    }
 
 }

@@ -4,4 +4,8 @@ out/
 src/META-INF/
 log4j.properties
 *.log
+.settings/
+bin/
+.classpath
+.project
 

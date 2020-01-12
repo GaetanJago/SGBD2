@@ -74,4 +74,9 @@ public class Player {
             this.codecs.remove(codec);
         }
     }
+    
+    @Override
+    public String toString() {
+    	return getName();
+    }
 }

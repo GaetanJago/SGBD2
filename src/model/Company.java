@@ -70,4 +70,9 @@ public class Company {
             codec.setCompany(null);
         }
     }
+    
+    @Override
+    public String toString() {
+    	return getName();
+    }
 }
