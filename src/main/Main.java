@@ -58,7 +58,7 @@ public class Main {
         codecDAO.create(codec);
         codecDAO.create(codec_b);
         player.addCodec(codec);
-        player.addCodec(codec_b);
+        player_b.addCodec(codec_b);
         playerDAO.create(player);
         playerDAO.create(player_b);
 
